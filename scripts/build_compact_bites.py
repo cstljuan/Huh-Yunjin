@@ -71,6 +71,32 @@ card.paste(closeup.crop((cx,cy,cx+610,cy+720)), (46,66))
 d.rectangle((29, 806, 672, 903), fill="#2c54bf")
 d.text((49, 829), "02  /  CLOSE UP", font=ImageFont.truetype(font_bold, 34), fill="white")
 card = card.rotate(8, Image.Resampling.BICUBIC, expand=True)
-card.save(OUT / "midground.png", optimize=True)
+card.quantize(colors=256, method=Image.Quantize.FASTOCTREE,
+              dither=Image.Dither.FLOYDSTEINBERG).save(OUT / "midground.png", optimize=True)
+
+# Small, high quality copies keep the interactive photo tray responsive.
+# Originals remain untouched beside index.html for future re-crops.
+photos = [
+    "COMPACT BITES YUNJIN (1).jpeg",
+    "COMPACT BITES YUNJIN (2).jpeg",
+    "COMPACT BITES YUNJIN (3).jpg",
+    "COMPACT BITES YUNJIN (4).jpg",
+    "COMPACT BITES YUNJIN (5).jpg",
+    "COMPACT BITES YUNJIN (2).png",
+    "COMPACT BITES YUNJIN (3).png",
+    "COMPACT BITES YUNJIN (4).png",
+]
+for i, name in enumerate(photos, 1):
+    photo = Image.open(ROOT / name).convert("RGB")
+    photo.thumbnail((1100, 1300), Image.Resampling.LANCZOS)
+    photo.save(OUT / f"photo-{i:02}.webp", "WEBP", quality=82, method=6)
+
+# Source: the owner's Resource Boy noise texture, 002.png. Reduce its 8K
+# source to a small overlay so the texture does not bloat the web poster.
+texture_source = ROOT / "resources" / "noise-002-original.png"
+if texture_source.exists():
+    texture = Image.open(texture_source).convert("RGB")
+    texture.thumbnail((1280, 720), Image.Resampling.LANCZOS)
+    texture.save(OUT / "noise-texture.webp", "WEBP", quality=50, method=6)
 
 print("Built:", ", ".join(p.name for p in OUT.iterdir()))

@@ -1,143 +1,47 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#dbe6f7">
-  <title>COMPACT BITES / Huh Yunjin</title>
-  <style>
-    /* ASSET SWAPS: all poster-specific image paths live in the five <img> tags below.
-       This file holds its own CSS and JS so it can be copied to another poster folder. */
-    :root { color-scheme: light; --ink:#17285a; --pink:#ec3d62; --blue:#275ddd; }
-    * { box-sizing:border-box; }
-    html, body { width:100%; height:100%; margin:0; overflow:hidden; }
-    body { font-family:Arial,Helvetica,sans-serif; background:#e9edf6; color:var(--ink); }
-    button { font:inherit; }
-    .scene { position:relative; width:100vw; height:100vh; height:100dvh; overflow:hidden; isolation:isolate; }
-    .plane { position:absolute; inset:-5%; width:110%; height:110%; pointer-events:none; will-change:transform; transition:transform 80ms linear; }
-    .background { z-index:-3; width:100%; height:100%; inset:0; object-fit:cover; }
-    .screen-grid { position:absolute; inset:0; z-index:-2; pointer-events:none; opacity:.4;
-      background:linear-gradient(90deg,transparent 49.9%,#8aa2df 50%,transparent 50.1%),
-      repeating-linear-gradient(0deg,transparent 0 51px,#a8b8dd66 52px,transparent 53px); }
-    .subject { z-index:-1; object-fit:contain; object-position:51% 100%; height:116%; top:-8%; filter:drop-shadow(22px 16px 0 #486aab22); }
-    .foreground { z-index:2; width:min(27vw,360px); height:auto; inset:auto 7% 7% auto; filter:drop-shadow(18px 24px 12px #193b6644); }
-    .masthead { position:absolute; z-index:4; top:4%; left:4.5%; right:4.5%; display:flex; justify-content:space-between; gap:18px;
-      align-items:center; border-bottom:2px solid var(--ink); padding-bottom:12px; font-size:clamp(11px,.9vw,14px); font-weight:900; letter-spacing:.15em; }
-    .masthead span:last-child { text-align:right; }
-    h1 { position:absolute; left:4%; top:17%; z-index:1; width:44%; margin:0; font-size:clamp(58px,10.5vw,180px);
-      line-height:.79; letter-spacing:-.105em; font-weight:1000; color:#1b4dbb; transform:rotate(-5deg); text-shadow:6px 7px 0 #fff,12px 12px 0 #ea4670; }
-    h1 span { display:block; }
-    .chapter { position:absolute; left:5%; bottom:16%; z-index:1; width:250px; font-size:13px; letter-spacing:.14em; font-weight:800; line-height:1.8; }
-    .chapter b { display:block; color:var(--pink); font-size:18px; }
-    .vertical { position:absolute; right:2%; top:45%; z-index:1; writing-mode:vertical-rl; font-size:12px; letter-spacing:.22em; font-weight:bold; }
-    .bottomline { position:absolute; left:4.5%; right:4.5%; bottom:3.6%; z-index:4; border-top:2px solid var(--ink);
-      display:flex; justify-content:space-between; padding-top:10px; font-size:11px; font-weight:900; letter-spacing:.18em; }
-    /* UI START POSITIONS: adjust these values independently for each future poster. */
-    .drag { position:absolute; z-index:5; left:68%; top:13%; cursor:grab; touch-action:none; user-select:none; -webkit-user-select:none; }
-    .drag:active,.drag.dragging { cursor:grabbing; }
-    .drag img { display:block; pointer-events:none; width:100%; }
-    .window { width:clamp(260px,28vw,450px); filter:drop-shadow(10px 15px 0 #152c5b44); transform:rotate(4deg); }
-    .sticker-one { left:4%; top:68%; width:clamp(210px,28vw,440px); transform:rotate(-9deg); filter:drop-shadow(7px 8px 0 #14295b33); }
-    .sticker-two { left:49%; top:14%; width:clamp(180px,22vw,330px); transform:rotate(7deg); filter:drop-shadow(6px 7px 0 #14295b44); }
-    .hint { position:absolute; z-index:4; right:5%; bottom:5%; font-size:11px; font-weight:bold; letter-spacing:.12em; }
-    @media(max-width:700px) {
-      h1 { top:16%; left:5%; width:85%; font-size:clamp(57px,16vw,110px); }
-      .subject { width:145%; left:-19%; object-position:48% 100%; height:105%; top:1%; }
-      .foreground { width:38vw; right:-7%; bottom:10%; }
-      .window { width:45vw; min-width:185px; left:49%; top:54%; }
-      .sticker-one { left:1%; top:71%; width:51vw; }
-      .sticker-two { left:48%; top:38%; width:44vw; }
-      .chapter { left:5%; bottom:22%; width:160px; font-size:10px; }
-      .chapter b { font-size:14px; }
-      .vertical { display:none; }
-      .masthead, .bottomline { font-size:9px; }
-      .hint { display:none; }
-    }
-    @media(prefers-reduced-motion:reduce) { .plane { transition:none; } }
-  </style>
-</head>
-<body>
-  <main class="scene" aria-label="Interactive COMPACT BITES poster featuring Huh Yunjin">
-    <!-- DEPTH LAYERS: background, masked subject, then foreground card. -->
-    <img class="plane background" src="assets/bg.jpg" alt="" data-depth="0.012">
-    <div class="screen-grid" aria-hidden="true"></div>
-    <img class="plane subject" src="assets/subject.png" alt="" data-depth="0.035">
-    <img class="plane foreground" src="assets/midground.png" alt="" data-depth="0.060">
-
-    <header class="masthead"><span>HUH YUNJIN / VISUAL STUDY 001</span><span>2003 → FOREVER &nbsp; ✳ &nbsp; FAN POSTER</span></header>
-    <h1><span>COMPACT</span><span>BITES!</span></h1>
-    <p class="chapter"><b>100% YUNJIN ENERGY</b>Sweet, sharp, unapologetic.<br>Move the cursor. Move the windows.</p>
-    <span class="vertical">SPECIAL EDITION • 01 / 05</span>
-
-    <!-- DRAG TARGETS: change left/top in CSS above. Pointer events support mouse, touch, pen. -->
-    <div class="drag window" tabindex="0" role="group" aria-label="Moveable Windows XP music window" data-draggable>
-      <img src="assets/ui-window.svg" alt="Windows XP style music player for COMPACT BITES" draggable="false">
-    </div>
-    <div class="drag sticker-one" tabindex="0" role="group" aria-label="Moveable Hot and Crunchy sticker" data-draggable>
-      <img src="assets/graffiti-1.png" alt="HOT &amp; CRUNCHY!" draggable="false">
-    </div>
-    <div class="drag sticker-two" tabindex="0" role="group" aria-label="Moveable Yunjin dot exe sticker" data-draggable>
-      <img src="assets/graffiti-2.png" alt="YUNJIN.exe" draggable="false">
-    </div>
-    <span class="hint">↗ DRAG TO REMIX THE SCENE</span>
-    <footer class="bottomline"><span>VOL. 01 / COMPACT BITES</span><span>MADE FOR THE FEELING ✳</span></footer>
-  </main>
-  <script>
-    // DEPTH: edit each data-depth value above. Smaller is farther away.
-    const planes = [...document.querySelectorAll('[data-depth]')];
-    const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
-    let frame = 0, mx = 0, my = 0;
-    window.addEventListener('mousemove', event => {
-      if (reduceMotion.matches) return;
-      mx = event.clientX - innerWidth / 2;
-      my = event.clientY - innerHeight / 2;
-      if (frame) return;
-      frame = requestAnimationFrame(() => {
-        for (const plane of planes) {
-          const depth = Number(plane.dataset.depth);
-          plane.style.transform = `translate3d(${-mx * depth}px, ${-my * depth}px, 0)`;
-        }
-        frame = 0;
-      });
-    }, {passive:true});
-
-    // DRAG: left/top are the only values updated, so poster image parallax stays independent.
-    for (const element of document.querySelectorAll('[data-draggable]')) {
-      let startX, startY, left, top, activePointer = null;
-      element.addEventListener('pointerdown', event => {
-        if (event.button !== 0 && event.pointerType === 'mouse') return;
-        const box = element.getBoundingClientRect();
-        // CSS rotation affects the box, so read the original layout coordinates.
-        left = element.offsetLeft; top = element.offsetTop;
-        startX = event.clientX; startY = event.clientY;
-        activePointer = event.pointerId;
-        element.setPointerCapture(activePointer);
-        element.classList.add('dragging');
-        element.style.zIndex = 10;
-      });
-      element.addEventListener('pointermove', event => {
-        if (event.pointerId !== activePointer) return;
-        element.style.left = `${Math.max(-element.offsetWidth * .65, Math.min(innerWidth - element.offsetWidth * .35, left + event.clientX - startX))}px`;
-        element.style.top = `${Math.max(-element.offsetHeight * .65, Math.min(innerHeight - element.offsetHeight * .35, top + event.clientY - startY))}px`;
-      });
-      const stop = event => {
-        if (event.pointerId !== activePointer) return;
-        activePointer = null;
-        element.classList.remove('dragging');
-        if (element.hasPointerCapture(event.pointerId)) element.releasePointerCapture(event.pointerId);
-      };
-      element.addEventListener('pointerup', stop);
-      element.addEventListener('pointercancel', stop);
-      // A focused sticker/window also moves with the arrow keys.
-      element.addEventListener('keydown', event => {
-        const directions = {ArrowLeft:[-1,0], ArrowRight:[1,0], ArrowUp:[0,-1], ArrowDown:[0,1]};
-        if (!directions[event.key]) return;
-        event.preventDefault();
-        const [dx,dy] = directions[event.key], step = event.shiftKey ? 20 : 5;
-        element.style.left = `${element.offsetLeft + dx * step}px`;
-        element.style.top = `${element.offsetTop + dy * step}px`;
-      });
-    }
-  </script>
-</body>
-</html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>COMPACT BITES / Yunjin</title>
+<style>
+/* One portable HTML file. Swap asset paths and PHOTO_SET for the next poster. */
+@font-face{font-family:Space;src:url(assets/fonts/space-grotesk-bold.ttf);font-weight:700}@font-face{font-family:Plex;src:url(assets/fonts/ibm-plex-mono-regular.ttf)}@font-face{font-family:Plex;src:url(assets/fonts/ibm-plex-mono-semibold.ttf);font-weight:600}
+:root{--ink:#193766;--blue:#2458c4;--pink:#ed3b6a;--paper:#f8f9ff}*{box-sizing:border-box}html,body{width:100%;height:100%;margin:0;overflow:hidden}body{font-family:Plex,monospace;background:#e9edf8;color:var(--ink)}button{font:inherit;cursor:pointer}button:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--pink);outline-offset:3px}
+.scene{position:relative;width:100vw;height:100vh;height:100dvh;overflow:hidden;isolation:isolate}.background{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-3}.grid{position:absolute;inset:0;z-index:-2;pointer-events:none;background:repeating-linear-gradient(0deg,transparent 0 52px,#a6b9dd66 53px,transparent 54px)}.texture{position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.12;mix-blend-mode:multiply;background:url(assets/noise-texture.webp) center/cover}
+/* Structural rails sit behind the subject, including where her body crosses them. */
+.rail{position:absolute;left:4.5%;right:4.5%;height:2px;background:var(--ink);z-index:0;pointer-events:none}.rail.top{top:6.7%}.rail.bottom{bottom:5.7%}.subject{position:absolute;z-index:2;width:110%;height:116%;left:-5%;top:-8%;object-fit:contain;object-position:51% bottom;pointer-events:none;filter:drop-shadow(22px 15px 0 #4569aa20)}
+.floating{position:absolute;z-index:5;touch-action:none;user-select:none;cursor:grab}.floating.dragging,.floating.dragging *{cursor:grabbing}.floating img{display:block;max-width:100%;pointer-events:none}.heading{left:4.2%;top:17%;width:44%;transform:rotate(-5deg);font:1000 clamp(58px,10.5vw,190px)/.79 Impact,'Arial Black',sans-serif;letter-spacing:-.08em;color:#2053bb;text-shadow:6px 7px #fff,11px 12px var(--pink)}.heading.alt{color:var(--pink);text-shadow:6px 7px #fff,11px 12px var(--blue)}.heading span{display:block}.heading small{display:block;margin:.4em 0 0 .18em;font:700 clamp(13px,1.3vw,22px) Space,'Malgun Gothic',sans-serif;letter-spacing:.02em;text-shadow:2px 2px #fff;color:var(--pink)}.tag{top:2.7%;padding:3px 7px;background:#fafbffdd;font:600 clamp(9px,.8vw,13px) Plex;letter-spacing:.11em}.tag.left{left:4.1%}.tag.right{right:4.2%}.edition{left:4.4%;bottom:2%;background:#f9faffdd;padding:3px;font:600 11px Plex;letter-spacing:.13em}.ko-bottom{right:5%;bottom:2%;font:700 14px Space,'Malgun Gothic',sans-serif;color:var(--pink);background:#f9faffdd;padding:3px}.hint{position:absolute;left:34%;bottom:2%;z-index:6;font:600 10px Plex;letter-spacing:.06em;background:#f9faffbb;padding:3px}
+.sticker.one{left:3%;top:55%;width:clamp(170px,24vw,380px);transform:rotate(-8deg)}.sticker.two{left:50%;top:20%;width:clamp(125px,17vw,270px);transform:rotate(9deg)}.sticker{filter:drop-shadow(5px 7px 0 #152b6744)}.cd{left:35%;top:73%;width:clamp(100px,12vw,205px);transform:rotate(-14deg);filter:drop-shadow(7px 10px 3px #1b326646)}.cd.spin img{animation:spin 2s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}.brand{left:61%;top:8%;width:clamp(110px,13vw,195px);transform:rotate(-4deg);background:#fffdeb;border:1px solid #456ccc;padding:10px;box-shadow:5px 6px #23467844}.brand small{display:block;margin-top:4px;text-align:center;font:600 10px Plex;color:var(--pink)}.symbol{left:59%;top:43%;width:clamp(50px,5vw,85px);padding:8px;transform:rotate(9deg);background:#fff;border:2px solid var(--pink);border-radius:50%;box-shadow:4px 5px var(--blue)}.mid{left:75%;top:64%;width:clamp(130px,18vw,280px);filter:drop-shadow(10px 12px 4px #234a7844)}
+.xp{background:#f7f8f3;border:2px solid #2554af;border-radius:8px 8px 4px 4px;box-shadow:8px 10px 0 #213e783d;font:400 11px Plex;overflow:hidden}.bar{height:32px;display:flex;align-items:center;gap:7px;padding:0 7px 0 10px;background:linear-gradient(#6da8ff,#0967e5 38%,#0846ae);color:white;font:700 13px Space;cursor:grab}.app-icon{display:grid;place-items:center;width:18px;height:18px;background:white;color:var(--pink);border-radius:2px}.bar-title{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.control{height:21px;min-width:22px;padding:0;color:white;background:#3b7bdb;border:1px solid #b7d9ff;border-radius:3px;font:700 14px Space}.control.close{background:#ed5754}.xp .body{padding:10px}.xp.min .body{display:none}.xp button:hover{filter:brightness(1.1)}.ui{padding:6px 9px;background:linear-gradient(white,#dce7ff);border:1px solid #7a9fd8;border-radius:3px;color:#1d4da6;font:600 10px Plex}.ui:active{transform:translateY(2px)}
+.player{right:8%;top:10%;width:clamp(250px,27vw,430px);transform:rotate(3deg);z-index:8}.player h2{font:700 clamp(21px,2vw,31px) Space;margin:10px 0 4px;letter-spacing:-.06em}.player .menu{margin:0 0 7px;font-size:10px}.address{padding:7px;border:1px solid #abb4c6;background:white;color:#66799a;white-space:nowrap;overflow:hidden}.sub{margin:0 0 10px;color:#5272ae}.song{display:flex;align-items:center;gap:9px;padding:10px;background:#e4ebfa;border:1px solid #a6bcef}.song strong{flex:1}.actions{display:flex;gap:7px;margin-top:10px}.actions .ui{flex:1}.eq{height:14px;display:flex;align-items:end;gap:3px;margin-top:8px}.eq i{width:4px;height:5px;background:var(--pink)}.playing .eq i:nth-child(even){animation:bars .4s alternate infinite}.playing .eq i:nth-child(odd){animation:bars .65s alternate-reverse infinite}@keyframes bars{to{height:14px}}
+.energy{left:4.5%;bottom:17%;width:clamp(230px,22vw,345px);transform:rotate(-2deg);z-index:8}.energy h2{margin:0 0 5px;font:700 18px Space}.energy p{margin:0 0 8px;font-size:10px}.meter{height:17px;padding:2px;border:1px solid var(--blue);background:white}.fill{width:78%;height:100%;background:linear-gradient(90deg,#ff8bad,var(--pink),#f4e77f);transition:width .25s}.energy-row{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-top:8px}.energy-row strong{font:700 18px Space;color:var(--pink)}
+.tray{right:4%;bottom:8.5%;width:clamp(245px,27vw,430px);transform:rotate(-2deg);z-index:8}.tray p{margin:0 0 8px;font-size:10px}.tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-color:#2b59bb #e1e9fa;padding-bottom:5px}.photo-tab{flex:0 0 56px;width:56px;border:2px solid white;background:white;padding:0;box-shadow:2px 3px #3159a677}.photo-tab img{display:block;width:52px;height:58px;object-fit:cover}.photo-tab small{font-size:8px}.photo-tab[aria-pressed=true]{border-color:var(--pink)}.photo-window{width:clamp(200px,20vw,320px);z-index:9;transform:rotate(3deg)}.photo-window .body{padding:7px}.photo-window img{width:100%;height:clamp(180px,26vh,300px);object-fit:cover}.photo-window .caption{display:flex;justify-content:space-between;align-items:center;margin-top:6px;font:600 10px Plex}.photo-window .caption button{padding:0;border:0;background:none;color:var(--pink);font:600 10px Plex}.sound{position:absolute;top:7.7%;right:4.5%;z-index:7;padding:5px 8px;color:var(--blue);background:white;border:1px solid var(--blue);font:600 10px Plex;box-shadow:3px 3px #23456e33}.taskbar{left:43%;bottom:1.3%;display:flex;align-items:center;gap:4px;padding:3px 7px;background:linear-gradient(#88b7fa,#2b6bd6);border:1px solid #124ba6;border-radius:5px;box-shadow:3px 4px #1c397c44;color:white;font:700 11px Space}.taskbar button{min-width:22px;height:18px;padding:0;background:#e3edff;border:1px solid white;border-radius:2px;color:#174598;font:700 12px Space}.spark{position:absolute;z-index:20;pointer-events:none;color:var(--pink);font:700 30px Space;animation:burst .7s ease-out forwards}@keyframes burst{to{transform:translateY(-75px) rotate(35deg);opacity:0}}
+@media(max-width:720px){.subject{width:150%;left:-24%;height:104%;top:1%}.heading{left:4%;top:15%;width:88%;font-size:clamp(57px,16vw,100px)}.heading small{font-size:12px}.tag{top:2%;font-size:8px}.tag.right{max-width:37%}.brand{left:58%;top:9%;width:105px}.symbol{left:82%;top:37%;width:48px;padding:5px}.sticker.one{left:1%;top:52%;width:46vw}.sticker.two{left:53%;top:37%;width:34vw}.cd{left:35%;top:65%;width:22vw}.mid{left:76%;top:66%;width:24vw}.player{top:44%;right:3%;width:47vw;min-width:170px}.player .body{padding:7px}.player h2{font-size:17px}.player .menu,.player .address,.player .sub,.eq{display:none}.song{padding:5px}.song strong{font-size:9px}.actions .ui{font-size:9px;padding:4px}.energy{left:2%;bottom:15%;width:48vw;min-width:165px}.energy .body{padding:6px}.energy h2{font-size:12px}.energy p{display:none}.energy-row strong{font-size:13px}.energy .ui{padding:4px;font-size:9px}.tray{right:2%;bottom:9%;width:49vw;min-width:170px}.tray .body{padding:5px}.tray p{display:none}.photo-tab{flex-basis:44px;width:44px}.photo-tab img{width:40px;height:40px}.photo-window{width:55vw;min-width:180px}.taskbar{left:39%;bottom:1%;gap:2px;padding:2px}.taskbar button{min-width:18px}.hint,.ko-bottom{display:none}.edition{font-size:9px}.sound{top:7%;right:3%;font-size:9px}}
+@media(prefers-reduced-motion:reduce){.cd.spin img,.playing .eq i,.spark{animation:none}}
+</style></head><body><main class="scene" id="scene" aria-label="Interactive COMPACT BITES poster">
+<img class="background" data-depth=".012" src="assets/bg.jpg" alt=""><div class="grid" aria-hidden="true"></div><div class="texture" aria-hidden="true"></div><div class="rail top" aria-hidden="true"></div><div class="rail bottom" aria-hidden="true"></div>
+<img class="subject" data-depth=".035" src="assets/subject.png" alt="Huh Yunjin in glasses with red hair">
+<div class="floating mid" data-drag data-depth=".055" tabindex="0" aria-label="Moveable closeup card"><img src="assets/midground.png" alt=""></div>
+<div class="floating tag left" data-drag tabindex="0">HUH YUNJIN / <span lang="ko">허윤진</span></div><div class="floating tag right" data-drag tabindex="0">2003 → FOREVER ✳ <span lang="ko">반짝이는 순간</span></div>
+<h1 class="floating heading" data-drag tabindex="0"><span>COMPACT</span><span>BITES!</span><small lang="ko">윤진의 작은 세계 ✳</small></h1>
+<div class="floating sticker one" data-drag tabindex="0" aria-label="Moveable sticker"><img src="assets/graffiti-1.png" alt="HOT & CRUNCHY!"></div><div class="floating sticker two" data-drag tabindex="0" aria-label="Moveable sticker"><img src="assets/graffiti-2.png" alt="YUNJIN.exe"></div>
+<div class="floating cd" data-drag tabindex="0" title="Double click to spin" aria-label="Moveable CD charm. Double click to spin"><img src="assets/cd-charm.webp" alt="Iridescent CD with pink star"></div>
+<div class="floating brand" data-drag tabindex="0" aria-label="Moveable LE SSERAFIM wordmark"><img src="assets/lesserafim-logo.svg" alt="LE SSERAFIM"><small lang="ko">르세라핌 ✳ 허윤진</small></div>
+<div class="floating symbol" data-drag tabindex="0" aria-label="Moveable LE SSERAFIM symbol"><img src="assets/lesserafim-icon.svg" alt="LE SSERAFIM anagram"></div>
+<section class="floating xp player" data-drag tabindex="0" aria-label="Moveable sound lab window"><header class="bar"><span class="app-icon">♪</span><span class="bar-title">yunjin.exe / sound lab</span><button class="control min" aria-label="Minimize sound lab">−</button><button class="control close" aria-label="Close sound lab">×</button></header><div class="body"><div class="menu">File　 Edit　 View　 Favorites　 Help</div><div class="address">C:\Users\Yunjin\compact-bites\</div><h2>COMPACT BITES</h2><p class="sub" lang="ko">작고 반짝이는 소리 / tiny sparkling sounds</p><div class="song"><b>♫</b><strong>BITE_BEAT.wav</strong><span>00:08</span></div><div class="actions"><button class="ui" id="play" aria-pressed="false">▶ PLAY BEAT</button><button class="ui" id="remix">✳ REMIX</button></div><div class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div></section>
+<section class="floating xp energy" data-drag tabindex="0" aria-label="Moveable Yunjin energy window"><header class="bar"><span class="app-icon">★</span><span class="bar-title">energy_meter.exe</span><button class="control min" aria-label="Minimize energy meter">−</button><button class="control close" aria-label="Close energy meter">×</button></header><div class="body"><h2>100% YUNJIN ENERGY</h2><p lang="ko">오늘도 빛나 ✳ make this moment louder.</p><div class="meter" role="meter" aria-label="Yunjin energy" aria-valuemin="0" aria-valuemax="100" aria-valuenow="78"><div class="fill"></div></div><div class="energy-row"><strong id="value">78%</strong><button class="ui" id="boost">✳ BOOST ME</button></div></div></section>
+<section class="floating xp tray" data-drag tabindex="0" aria-label="Moveable photo tray"><header class="bar"><span class="app-icon">▣</span><span class="bar-title">사진첩 / YUNJIN PHOTOS</span><button class="control min" aria-label="Minimize photo tray">−</button><button class="control close" aria-label="Close photo tray">×</button></header><div class="body"><p>Click a tab or drag it onto the poster to open a photo.</p><div class="tabs" id="tabs" aria-label="Choose a Yunjin photo"></div></div></section>
+<button class="sound" id="sound" aria-pressed="false">♫ SOUND OFF</button><div class="floating edition" data-drag tabindex="0">VOL. 01 / COMPACT BITES</div><div class="floating ko-bottom" data-drag tabindex="0" lang="ko">오늘도 빛나 ✳</div><div class="floating taskbar" data-drag tabindex="0" aria-label="Moveable taskbar with restore buttons"><span>▣</span><button type="button" data-restore="player">♪</button><button type="button" data-restore="energy">★</button><button type="button" data-restore="tray">▣</button></div><div class="hint">DRAG EVERYTHING ✳ DROP A PHOTO TAB ANYWHERE</div>
+</main><script>
+const photos=[['01','STUDIO POSE'],['02','DETAIL'],['03','PORTRAIT'],['04','GREEN ROOM'],['05','DINNER CLUB'],['06','TWO SIDES'],['07','CLOSE UP'],['08','SMILE']];
+const scene=document.getElementById('scene'),tabs=document.getElementById('tabs'),reduced=matchMedia('(prefers-reduced-motion: reduce)');let topZ=20,drag=null,ctx=null,soundOn=false,playing=false,beat=null,step=0,energy=78;
+function front(el){el.style.zIndex=++topZ}function note(f=440,d=.08){if(!soundOn)return;ctx ||= new (window.AudioContext||window.webkitAudioContext)();if(ctx.state==='suspended')ctx.resume();const o=ctx.createOscillator(),g=ctx.createGain();o.type='triangle';o.frequency.value=f;g.gain.setValueAtTime(.025,ctx.currentTime);g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+d);o.connect(g).connect(ctx.destination);o.start();o.stop(ctx.currentTime+d)}
+function sound(value){soundOn=value;const b=document.getElementById('sound');b.textContent=value?'♫ SOUND ON':'♫ SOUND OFF';b.setAttribute('aria-pressed',String(value));if(value)note(880,.12);else stopBeat()}document.getElementById('sound').onclick=()=>sound(!soundOn);
+function tick(){note([261.63,392,523.25,659.25,523.25,392,329.63,440][step++%8],.19)}function stopBeat(){clearInterval(beat);beat=null;playing=false;document.querySelector('.player').classList.remove('playing');const b=document.getElementById('play');b.textContent='▶ PLAY BEAT';b.setAttribute('aria-pressed','false')}
+document.getElementById('play').onclick=()=>{if(playing){stopBeat();return}if(!soundOn)sound(true);playing=true;document.querySelector('.player').classList.add('playing');const b=document.getElementById('play');b.textContent='❚❚ PAUSE';b.setAttribute('aria-pressed','true');tick();beat=setInterval(tick,240)};
+function sparkle(x,y){if(reduced.matches)return;for(let i=0;i<6;i++){const s=document.createElement('span');s.className='spark';s.textContent=i%2?'✳':'★';s.style.left=x+(i-3)*19+'px';s.style.top=y+(i%3)*15+'px';scene.append(s);setTimeout(()=>s.remove(),750)}}
+document.getElementById('remix').onclick=()=>{step=Math.floor(Math.random()*8);note(740);sparkle(innerWidth*.8,innerHeight*.28)};document.getElementById('boost').onclick=()=>{energy=energy>=100?78:Math.min(100,energy+11);document.getElementById('value').textContent=energy+'%';const m=document.querySelector('.meter');m.setAttribute('aria-valuenow',String(energy));m.querySelector('.fill').style.width=energy+'%';note(784,.13);const b=m.getBoundingClientRect();sparkle(b.right,b.top)};document.querySelector('.cd').ondblclick=e=>{e.currentTarget.classList.toggle('spin');note(1046,.14)};document.querySelector('.heading').onclick=e=>{e.currentTarget.classList.toggle('alt');note(660,.09);sparkle(e.clientX,e.clientY)};document.querySelectorAll('.brand,.symbol,.sticker').forEach(el=>el.addEventListener('click',e=>{note(784,.08);sparkle(e.clientX,e.clientY)}));
+/* Pointer capture preserves movement across windows. Keyboard arrows move focused items. */
+function movable(el){if(el.dataset.ready)return;el.dataset.ready='1';el.addEventListener('pointerdown',e=>{if(e.pointerType==='mouse'&&e.button!==0||e.target.closest('button,.photo-tab')||drag)return;front(el);drag={el,id:e.pointerId,x:e.clientX,y:e.clientY,l:el.offsetLeft,t:el.offsetTop};el.style.right='auto';el.style.bottom='auto';el.setPointerCapture(e.pointerId);el.classList.add('dragging')});el.addEventListener('pointermove',e=>{if(drag?.el!==el||drag.id!==e.pointerId)return;el.style.left=Math.max(-el.offsetWidth*.7,Math.min(innerWidth-el.offsetWidth*.3,drag.l+e.clientX-drag.x))+'px';el.style.top=Math.max(-el.offsetHeight*.7,Math.min(innerHeight-el.offsetHeight*.3,drag.t+e.clientY-drag.y))+'px'});function end(e){if(drag?.el!==el||drag.id!==e.pointerId)return;drag=null;el.classList.remove('dragging');if(el.hasPointerCapture(e.pointerId))el.releasePointerCapture(e.pointerId)}el.addEventListener('pointerup',end);el.addEventListener('pointercancel',end);el.addEventListener('keydown',e=>{const d={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,-1],ArrowDown:[0,1]}[e.key];if(!d)return;e.preventDefault();el.style.right='auto';el.style.bottom='auto';el.style.left=el.offsetLeft+d[0]*(e.shiftKey?20:5)+'px';el.style.top=el.offsetTop+d[1]*(e.shiftKey?20:5)+'px';front(el)})}document.querySelectorAll('[data-drag]').forEach(movable);
+document.querySelectorAll('.xp:not(.photo-window) .control').forEach(b=>b.onclick=()=>{const w=b.closest('.xp');note(620,.04);if(b.classList.contains('close'))w.hidden=true;else w.classList.toggle('min')});document.querySelectorAll('[data-restore]').forEach(b=>b.onclick=()=>{const w=document.querySelector('.'+b.dataset.restore);w.hidden=false;w.classList.remove('min');front(w);note(880,.08)});
+function openPhoto(i,x=innerWidth*.62,y=innerHeight*.43){const [n,label]=photos[i],src='assets/photo-'+n+'.webp';const w=document.createElement('section');w.className='floating xp photo-window';w.dataset.drag='';w.tabIndex=0;w.setAttribute('aria-label','Moveable photo window '+n+' '+label);w.innerHTML='<header class="bar"><span class="app-icon">▣</span><span class="bar-title">YUNJIN_'+n+'.jpg / '+label+'</span><button class="control min" aria-label="Minimize photo">−</button><button class="control close" aria-label="Close photo">×</button></header><div class="body"><img src="'+src+'" alt="Yunjin photo '+n+'"><div class="caption"><span>'+label+' / '+n+'</span><button aria-label="Bring photo to front">↗ FRONT</button></div></div>';w.style.left=Math.max(8,Math.min(innerWidth-170,x))+'px';w.style.top=Math.max(35,Math.min(innerHeight-160,y))+'px';scene.append(w);movable(w);front(w);w.querySelector('.close').onclick=()=>{w.remove();note(520,.04)};w.querySelector('.min').onclick=()=>{w.classList.toggle('min');note(620,.04)};w.querySelector('.caption button').onclick=()=>{front(w);note(720,.04)};tabs.querySelectorAll('.photo-tab').forEach((b,j)=>b.setAttribute('aria-pressed',String(i===j)));note(880,.07);return w}
+photos.forEach(([n,label],i)=>{const b=document.createElement('button');b.className='photo-tab';b.type='button';b.draggable=true;b.dataset.index=i;b.setAttribute('aria-pressed','false');b.setAttribute('aria-label','Open '+label+' photo '+n);b.innerHTML='<img src="assets/photo-'+n+'.webp" alt="" draggable="false"><small>'+n+'</small>';b.onclick=()=>openPhoto(i,innerWidth*(.55+(i%3)*.03),innerHeight*(.36+(i%4)*.04));b.ondragstart=e=>{e.dataTransfer.effectAllowed='copy';e.dataTransfer.setData('text/plain',String(i))};tabs.append(b)});scene.ondragover=e=>{if(e.dataTransfer.types.includes('text/plain'))e.preventDefault()};scene.ondrop=e=>{const n=e.dataTransfer.getData('text/plain');if(!/^\d+$/.test(n)||!photos[Number(n)])return;e.preventDefault();openPhoto(Number(n),e.clientX-90,e.clientY-25)};openPhoto(1,innerWidth*.60,innerHeight*.47);
+let mx=0,my=0,frame=0;window.addEventListener('mousemove',e=>{if(reduced.matches)return;mx=e.clientX-innerWidth/2;my=e.clientY-innerHeight/2;if(frame)return;frame=requestAnimationFrame(()=>{for(const el of scene.querySelectorAll('[data-depth]')){const d=+el.dataset.depth;el.style.translate=(-mx*d)+'px '+(-my*d)+'px'}frame=0})},{passive:true});document.addEventListener('visibilitychange',()=>{if(document.hidden)stopBeat()});
+</script></body></html>
