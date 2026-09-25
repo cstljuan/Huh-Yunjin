@@ -89,7 +89,8 @@ photos = [
 for i, name in enumerate(photos, 1):
     photo = Image.open(ROOT / name).convert("RGB")
     photo.thumbnail((1100, 1300), Image.Resampling.LANCZOS)
-    photo.save(OUT / f"photo-{i:02}.webp", "WEBP", quality=82, method=6)
+    photo.save(OUT / f"photo-{i:02}.webp", "WEBP", quality=82, method=4)
+    assert (OUT / f"photo-{i:02}.webp").stat().st_size > 0
 
 # Source: the owner's Resource Boy noise texture, 002.png. Reduce its 8K
 # source to a small overlay so the texture does not bloat the web poster.
