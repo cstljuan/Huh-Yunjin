@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 530 410" width="530" height="410">
+  <defs><linearGradient id="bar" x2="0" y2="1"><stop stop-color="#5599fc"/><stop offset=".48" stop-color="#0968eb"/><stop offset="1" stop-color="#0340a6"/></linearGradient><linearGradient id="body" x2="0" y2="1"><stop stop-color="#fefefc"/><stop offset="1" stop-color="#e5e4d9"/></linearGradient></defs>
+  <rect x="3" y="3" width="524" height="404" rx="11" fill="#1452b6" stroke="#edf5ff" stroke-width="5"/>
+  <path d="M13 7H517Q526 7 526 18V51H4V18Q4 7 13 7" fill="url(#bar)"/>
+  <rect x="9" y="52" width="512" height="348" fill="url(#body)"/>
+  <rect x="20" y="18" width="20" height="21" rx="2" fill="#fff"/><path d="M26 33l4-11 4 11" fill="none" stroke="#ff3b65" stroke-width="3"/>
+  <g font-family="Tahoma,Verdana,sans-serif"><text x="49" y="37" font-size="17" fill="#fff" font-weight="bold">COMPACT BITES - yunjin.exe</text>
+  <rect x="462" y="13" width="24" height="24" rx="4" fill="#266bd4" stroke="#b8d5ff"/><text x="469" y="32" font-size="17" fill="#fff">_</text>
+  <rect x="492" y="13" width="26" height="24" rx="4" fill="#f44e45" stroke="#ffd4ba"/><text x="500" y="31" font-size="17" fill="#fff" font-weight="bold">×</text>
+  <text x="23" y="77" font-size="13" fill="#333">File    Edit    View    Favorites    Help</text>
+  <rect x="19" y="91" width="488" height="34" rx="2" fill="#fff" stroke="#a4a6a7"/><text x="31" y="113" font-size="13" fill="#676767">C:\\Users\\Yunjin\\compact-bites\\</text>
+  <text x="33" y="160" font-size="17" fill="#1648a0" font-weight="bold">now playing...</text>
+  <text x="33" y="205" font-size="30" fill="#151a44" font-weight="bold">COMPACT BITES</text>
+  <text x="35" y="231" font-size="15" fill="#3e4b83">a little loud. a little sweet.</text>
+  <rect x="33" y="258" width="460" height="57" rx="3" fill="#dfe8fb" stroke="#9ab4df"/>
+  <text x="48" y="291" font-size="17" fill="#2452ac">♪</text><text x="81" y="290" font-size="16" fill="#1e2751">YUNJIN_01.mp3</text><text x="402" y="290" font-size="14" fill="#5b6991">03:14</text>
+  <rect x="33" y="334" width="460" height="48" rx="3" fill="#f9fae9" stroke="#e1b9c0"/><text x="48" y="364" font-size="14" fill="#b62d51">★ click + drag to move me around!</text></g>
+</svg>

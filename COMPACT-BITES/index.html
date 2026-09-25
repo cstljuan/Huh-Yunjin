@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#dbe6f7">
+  <title>COMPACT BITES / Huh Yunjin</title>
+  <style>
+    /* ASSET SWAPS: all poster-specific image paths live in the five <img> tags below.
+       This file holds its own CSS and JS so it can be copied to another poster folder. */
+    :root { color-scheme: light; --ink:#17285a; --pink:#ec3d62; --blue:#275ddd; }
+    * { box-sizing:border-box; }
+    html, body { width:100%; height:100%; margin:0; overflow:hidden; }
+    body { font-family:Arial,Helvetica,sans-serif; background:#e9edf6; color:var(--ink); }
+    button { font:inherit; }
+    .scene { position:relative; width:100vw; height:100vh; height:100dvh; overflow:hidden; isolation:isolate; }
+    .plane { position:absolute; inset:-5%; width:110%; height:110%; pointer-events:none; will-change:transform; transition:transform 80ms linear; }
+    .background { z-index:-3; width:100%; height:100%; inset:0; object-fit:cover; }
+    .screen-grid { position:absolute; inset:0; z-index:-2; pointer-events:none; opacity:.4;
+      background:linear-gradient(90deg,transparent 49.9%,#8aa2df 50%,transparent 50.1%),
+      repeating-linear-gradient(0deg,transparent 0 51px,#a8b8dd66 52px,transparent 53px); }
+    .subject { z-index:-1; object-fit:contain; object-position:51% 100%; height:116%; top:-8%; filter:drop-shadow(22px 16px 0 #486aab22); }
+    .foreground { z-index:2; width:min(27vw,360px); height:auto; inset:auto 7% 7% auto; filter:drop-shadow(18px 24px 12px #193b6644); }
+    .masthead { position:absolute; z-index:4; top:4%; left:4.5%; right:4.5%; display:flex; justify-content:space-between; gap:18px;
+      align-items:center; border-bottom:2px solid var(--ink); padding-bottom:12px; font-size:clamp(11px,.9vw,14px); font-weight:900; letter-spacing:.15em; }
+    .masthead span:last-child { text-align:right; }
+    h1 { position:absolute; left:4%; top:17%; z-index:1; width:44%; margin:0; font-size:clamp(58px,10.5vw,180px);
+      line-height:.79; letter-spacing:-.105em; font-weight:1000; color:#1b4dbb; transform:rotate(-5deg); text-shadow:6px 7px 0 #fff,12px 12px 0 #ea4670; }
+    h1 span { display:block; }
+    .chapter { position:absolute; left:5%; bottom:16%; z-index:1; width:250px; font-size:13px; letter-spacing:.14em; font-weight:800; line-height:1.8; }
+    .chapter b { display:block; color:var(--pink); font-size:18px; }
+    .vertical { position:absolute; right:2%; top:45%; z-index:1; writing-mode:vertical-rl; font-size:12px; letter-spacing:.22em; font-weight:bold; }
+    .bottomline { position:absolute; left:4.5%; right:4.5%; bottom:3.6%; z-index:4; border-top:2px solid var(--ink);
+      display:flex; justify-content:space-between; padding-top:10px; font-size:11px; font-weight:900; letter-spacing:.18em; }
+    /* UI START POSITIONS: adjust these values independently for each future poster. */
+    .drag { position:absolute; z-index:5; left:68%; top:13%; cursor:grab; touch-action:none; user-select:none; -webkit-user-select:none; }
+    .drag:active,.drag.dragging { cursor:grabbing; }
+    .drag img { display:block; pointer-events:none; width:100%; }
+    .window { width:clamp(260px,28vw,450px); filter:drop-shadow(10px 15px 0 #152c5b44); transform:rotate(4deg); }
+    .sticker-one { left:4%; top:68%; width:clamp(210px,28vw,440px); transform:rotate(-9deg); filter:drop-shadow(7px 8px 0 #14295b33); }
+    .sticker-two { left:49%; top:14%; width:clamp(180px,22vw,330px); transform:rotate(7deg); filter:drop-shadow(6px 7px 0 #14295b44); }
+    .hint { position:absolute; z-index:4; right:5%; bottom:5%; font-size:11px; font-weight:bold; letter-spacing:.12em; }
+    @media(max-width:700px) {
+      h1 { top:16%; left:5%; width:85%; font-size:clamp(57px,16vw,110px); }
+      .subject { width:145%; left:-19%; object-position:48% 100%; height:105%; top:1%; }
+      .foreground { width:38vw; right:-7%; bottom:10%; }
+      .window { width:45vw; min-width:185px; left:49%; top:54%; }
+      .sticker-one { left:1%; top:71%; width:51vw; }
+      .sticker-two { left:48%; top:38%; width:44vw; }
+      .chapter { left:5%; bottom:22%; width:160px; font-size:10px; }
+      .chapter b { font-size:14px; }
+      .vertical { display:none; }
+      .masthead, .bottomline { font-size:9px; }
+      .hint { display:none; }
+    }
+    @media(prefers-reduced-motion:reduce) { .plane { transition:none; } }
+  </style>
+</head>
+<body>
+  <main class="scene" aria-label="Interactive COMPACT BITES poster featuring Huh Yunjin">
+    <!-- DEPTH LAYERS: background, masked subject, then foreground card. -->
+    <img class="plane background" src="assets/bg.jpg" alt="" data-depth="0.012">
+    <div class="screen-grid" aria-hidden="true"></div>
+    <img class="plane subject" src="assets/subject.png" alt="" data-depth="0.035">
+    <img class="plane foreground" src="assets/midground.png" alt="" data-depth="0.060">
+
+    <header class="masthead"><span>HUH YUNJIN / VISUAL STUDY 001</span><span>2003 → FOREVER &nbsp; ✳ &nbsp; FAN POSTER</span></header>
+    <h1><span>COMPACT</span><span>BITES!</span></h1>
+    <p class="chapter"><b>100% YUNJIN ENERGY</b>Sweet, sharp, unapologetic.<br>Move the cursor. Move the windows.</p>
+    <span class="vertical">SPECIAL EDITION • 01 / 05</span>
+
+    <!-- DRAG TARGETS: change left/top in CSS above. Pointer events support mouse, touch, pen. -->
+    <div class="drag window" tabindex="0" role="group" aria-label="Moveable Windows XP music window" data-draggable>
+      <img src="assets/ui-window.svg" alt="Windows XP style music player for COMPACT BITES" draggable="false">
+    </div>
+    <div class="drag sticker-one" tabindex="0" role="group" aria-label="Moveable Hot and Crunchy sticker" data-draggable>
+      <img src="assets/graffiti-1.png" alt="HOT &amp; CRUNCHY!" draggable="false">
+    </div>
+    <div class="drag sticker-two" tabindex="0" role="group" aria-label="Moveable Yunjin dot exe sticker" data-draggable>
+      <img src="assets/graffiti-2.png" alt="YUNJIN.exe" draggable="false">
+    </div>
+    <span class="hint">↗ DRAG TO REMIX THE SCENE</span>
+    <footer class="bottomline"><span>VOL. 01 / COMPACT BITES</span><span>MADE FOR THE FEELING ✳</span></footer>
+  </main>
+  <script>
+    // DEPTH: edit each data-depth value above. Smaller is farther away.
+    const planes = [...document.querySelectorAll('[data-depth]')];
+    const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
+    let frame = 0, mx = 0, my = 0;
+    window.addEventListener('mousemove', event => {
+      if (reduceMotion.matches) return;
+      mx = event.clientX - innerWidth / 2;
+      my = event.clientY - innerHeight / 2;
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        for (const plane of planes) {
+          const depth = Number(plane.dataset.depth);
+          plane.style.transform = `translate3d(${-mx * depth}px, ${-my * depth}px, 0)`;
+        }
+        frame = 0;
+      });
+    }, {passive:true});
+
+    // DRAG: left/top are the only values updated, so poster image parallax stays independent.
+    for (const element of document.querySelectorAll('[data-draggable]')) {
+      let startX, startY, left, top, activePointer = null;
+      element.addEventListener('pointerdown', event => {
+        if (event.button !== 0 && event.pointerType === 'mouse') return;
+        const box = element.getBoundingClientRect();
+        // CSS rotation affects the box, so read the original layout coordinates.
+        left = element.offsetLeft; top = element.offsetTop;
+        startX = event.clientX; startY = event.clientY;
+        activePointer = event.pointerId;
+        element.setPointerCapture(activePointer);
+        element.classList.add('dragging');
+        element.style.zIndex = 10;
+      });
+      element.addEventListener('pointermove', event => {
+        if (event.pointerId !== activePointer) return;
+        element.style.left = `${Math.max(-element.offsetWidth * .65, Math.min(innerWidth - element.offsetWidth * .35, left + event.clientX - startX))}px`;
+        element.style.top = `${Math.max(-element.offsetHeight * .65, Math.min(innerHeight - element.offsetHeight * .35, top + event.clientY - startY))}px`;
+      });
+      const stop = event => {
+        if (event.pointerId !== activePointer) return;
+        activePointer = null;
+        element.classList.remove('dragging');
+        if (element.hasPointerCapture(event.pointerId)) element.releasePointerCapture(event.pointerId);
+      };
+      element.addEventListener('pointerup', stop);
+      element.addEventListener('pointercancel', stop);
+      // A focused sticker/window also moves with the arrow keys.
+      element.addEventListener('keydown', event => {
+        const directions = {ArrowLeft:[-1,0], ArrowRight:[1,0], ArrowUp:[0,-1], ArrowDown:[0,1]};
+        if (!directions[event.key]) return;
+        event.preventDefault();
+        const [dx,dy] = directions[event.key], step = event.shiftKey ? 20 : 5;
+        element.style.left = `${element.offsetLeft + dx * step}px`;
+        element.style.top = `${element.offsetTop + dy * step}px`;
+      });
+    }
+  </script>
+</body>
+</html>
