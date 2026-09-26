@@ -13,6 +13,6 @@
   <text x="33" y="205" font-size="30" fill="#151a44" font-weight="bold">COMPACT BITES</text>
   <text x="35" y="231" font-size="15" fill="#3e4b83">a little loud. a little sweet.</text>
   <rect x="33" y="258" width="460" height="57" rx="3" fill="#dfe8fb" stroke="#9ab4df"/>
-  <text x="48" y="291" font-size="17" fill="#2452ac">♪</text><text x="81" y="290" font-size="16" fill="#1e2751">YUNJIN_01.mp3</text><text x="402" y="290" font-size="14" fill="#5b6991">03:14</text>
-  <rect x="33" y="334" width="460" height="48" rx="3" fill="#f9fae9" stroke="#e1b9c0"/><text x="48" y="364" font-size="14" fill="#b62d51">★ click + drag to move me around!</text></g>
+  <text x="43" y="291" font-size="12" fill="#2452ac" font-weight="bold">PLAY</text><text x="81" y="290" font-size="16" fill="#1e2751">YUNJIN_01.mp3</text><text x="402" y="290" font-size="14" fill="#5b6991">03:14</text>
+  <rect x="33" y="334" width="460" height="48" rx="3" fill="#f9fae9" stroke="#e1b9c0"/><text x="48" y="364" font-size="14" fill="#b62d51">CLICK AND DRAG THIS WINDOW</text></g>
 </svg>
