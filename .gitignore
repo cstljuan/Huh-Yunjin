@@ -1,9 +1,0 @@
-# OS files
-.DS_Store
-Thumbs.db
-
-# Large raw edit files
-.psd
-.clip
-.zip
-.rar
