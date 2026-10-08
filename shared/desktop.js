@@ -86,7 +86,9 @@
     if (!el.hasAttribute('tabindex')) el.tabIndex = 0;
     let drag;
     handle.addEventListener('pointerdown', e => {
-      if (e.button !== 0 || e.target.closest('button,a,input,textarea,select')) return;
+      if (e.button !== 0) return;
+      const control = e.target.closest('button,a,input,textarea,select');
+      if (control && !(control === el && el.matches('[data-play-memory]'))) return;
       const left = el.offsetLeft, top = el.offsetTop;
       drag = { id: e.pointerId, x: e.clientX, y: e.clientY, left, top, moved: false };
       el.classList.remove('window-enter');front(el); el.style.left = left + 'px'; el.style.top = top + 'px'; el.style.right = 'auto'; el.style.bottom = 'auto';
@@ -245,7 +247,7 @@
   audio.addEventListener('timeupdate',()=>{seek.value=Number.isFinite(audio.duration)?audio.currentTime/audio.duration*100:0;music.querySelector('.music-time').textContent=time(audio.currentTime)+' / '+time(audio.duration)});
   audio.addEventListener('loadedmetadata',()=>music.querySelector('.music-time').textContent='0:00 / '+time(audio.duration));audio.addEventListener('error',()=>toast('The music file could not load.'));
   seek.addEventListener('input',()=>{if(Number.isFinite(audio.duration))audio.currentTime=Number(seek.value)/100*audio.duration});volume.addEventListener('input',()=>audio.volume=Number(volume.value));
-  document.querySelector('[data-play-memory]')?.addEventListener('click',()=>{show('music');if(audio.paused)toggleMusic();openSlideshow();const slideshow=records.get('slideshow').el;if(slideshow.querySelector('.slide-play').textContent==='PLAY MEMORIES')slideshow.querySelector('.slide-play').click()});
+  document.querySelector('[data-play-memory]')?.addEventListener('click',event=>{if(event.currentTarget.dataset.justDragged)return;show('music');if(audio.paused)toggleMusic();openSlideshow();const slideshow=records.get('slideshow').el;if(slideshow.querySelector('.slide-play').textContent==='PLAY MEMORIES')slideshow.querySelector('.slide-play').click()});
   function openSlideshow(){
     if(records.has('slideshow')){show('slideshow');return;}
     let index=0,timer;
