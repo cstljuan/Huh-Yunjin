@@ -97,3 +97,18 @@ body[data-theme="diary"] .photo-main{left:70%;top:12%;width:24vw}
  body[data-theme="field"] .subject{width:115%;height:104%;right:-15%;object-fit:cover;object-position:53% center}
  body[data-theme="diary"] .photo-main{left:62%;top:27%;width:34%}
 }
+
+@font-face{font-family:AlbumTitle;src:url('fonts/album-title-bookman.otf') format('opentype');font-style:italic;font-weight:700;font-display:swap}
+body[data-theme="diary"] .title>span{font-family:AlbumTitle,serif;font-style:italic;font-weight:700;font-size:clamp(58px,7.5vw,142px);letter-spacing:-.075em;line-height:1.03}
+@media(max-width:760px){body[data-theme="diary"] .title>span{font-size:clamp(45px,12vw,72px)}}
+
+/* Full scene composite: transparent Day Trip foreground over a rooftop plate. */
+body[data-theme="field"] .background{display:block;opacity:1;filter:saturate(.85);inset:-4%;width:108%;height:108%;object-fit:cover;object-position:center}
+body[data-theme="field"] .subject{inset:auto;left:auto;top:auto;right:6%;bottom:-32px;width:auto;height:108%;max-width:none;max-height:none;object-fit:contain;mask-image:none;-webkit-mask-image:none;filter:saturate(.87) drop-shadow(0 8px 10px #383d3126);z-index:1}
+body[data-theme="field"] .archive{top:72%;bottom:auto;right:4%}
+@media(max-width:760px){
+ body[data-theme="field"] .subject{left:auto;right:-34%;bottom:-25px;top:auto;width:auto;height:86%;object-fit:contain}
+ body[data-theme="field"] .archive{top:auto;bottom:85px;right:12px}
+}
+
+@media(min-width:761px){body[data-theme="field"] .subject{right:-3%;height:104%;bottom:-24px}}
