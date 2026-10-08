@@ -27,7 +27,7 @@
     menu.setAttribute('aria-keyshortcuts', 'H');
   });
   if (window.POSTER?.theme === 'aura') {
-    const portrait = new URLSearchParams(location.search).get('portrait') === 'electric' ? 'electric' : 'afterimage';
+    const portrait = (window.POSTER.portrait || new URLSearchParams(location.search).get('portrait')) === 'electric' ? 'electric' : 'afterimage';
     document.body.dataset.portrait = portrait;
     const hero = document.getElementById('hero');
     hero.src = portrait === 'electric' ? 'assets/photo-02.webp' : 'assets/photo-05.webp';
