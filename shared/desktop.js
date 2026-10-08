@@ -9,6 +9,31 @@
   const read = (key, fallback = '') => { try { return localStorage.getItem(key) ?? fallback; } catch { return fallback; } };
   const write = (key, value) => { try { localStorage.setItem(key, value); return true; } catch { return false; } };
   try { enabled = sessionStorage.getItem('yunjin:sound') !== 'off'; } catch {}
+  // H hides the dock across the desktop and all five worlds; typing is unaffected.
+  let menuHidden = false;
+  try { menuHidden = sessionStorage.getItem('yunjin:menu-hidden') === 'true'; } catch {}
+  const applyMenuVisibility = () => document.body.classList.toggle('menu-hidden', menuHidden);
+  applyMenuVisibility();
+  document.addEventListener('keydown', event => {
+    if (event.repeat || event.ctrlKey || event.metaKey || event.altKey || event.target.closest('input, textarea, select, [contenteditable="true"]')) return;
+    if (event.key.toLowerCase() !== 'h') return;
+    event.preventDefault();
+    menuHidden = !menuHidden;
+    applyMenuVisibility();
+    try { sessionStorage.setItem('yunjin:menu-hidden', String(menuHidden)); } catch {}
+  });
+  document.querySelectorAll('.action-dock, .taskbar').forEach(menu => {
+    menu.title = 'Press H to hide or show this menu';
+    menu.setAttribute('aria-keyshortcuts', 'H');
+  });
+  if (window.POSTER?.theme === 'aura') {
+    const portrait = new URLSearchParams(location.search).get('portrait') === 'electric' ? 'electric' : 'afterimage';
+    document.body.dataset.portrait = portrait;
+    const hero = document.getElementById('hero');
+    hero.src = portrait === 'electric' ? 'assets/photo-02.webp' : 'assets/photo-05.webp';
+    hero.alt = `Yunjin in the ${portrait === 'electric' ? 'Electric' : 'Afterimage'} editorial portrait`;
+  }
+
   function sound(kind = 'click') {
     if (!enabled) return;
     try {

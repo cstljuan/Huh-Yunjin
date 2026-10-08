@@ -56,3 +56,15 @@ body[data-theme="field"] .subject{width:auto;height:104%;max-width:none;right:-2
 @media(max-width:760px){body[data-theme="field"] .subject{width:174vw;height:auto;right:-50%}body[data-theme="aura"] .subject{mask-image:linear-gradient(to right,transparent,black 15%,black)}}
 
 body[data-theme="aura"] .subject{mask-image:none;-webkit-mask-image:none}
+
+/* Continuous GUAIAC photograph keeps the original hand, hood and sky seamless. */
+body[data-theme="field"] .background{display:none}
+body[data-theme="field"] .subject{inset:-3%;width:106%;height:106%;max-width:none;max-height:none;object-fit:cover;object-position:50% 15%;filter:none;mask-image:none;z-index:0}
+/* Two photographic Aura compositions, selectable for comparison through the URL. */
+body[data-theme="aura"] .subject{left:auto;top:auto;right:-1%;bottom:-2%;height:104%;width:53%;max-width:none;object-fit:cover;object-position:50% 30%;filter:none;mask-image:linear-gradient(to right,transparent,black 18%);-webkit-mask-image:linear-gradient(to right,transparent,black 18%)}
+body[data-theme="aura"][data-portrait="electric"] .subject{width:51%;object-position:50% 42%}
+body.menu-hidden .action-dock,body.menu-hidden .taskbar{display:none!important}
+@media(max-width:760px){
+ body[data-theme="field"] .subject{inset:-3%;width:106%;height:106%;object-position:48% center}
+ body[data-theme="aura"] .subject,body[data-theme="aura"][data-portrait="electric"] .subject{width:100%;height:75%;right:-12%;bottom:-2%;object-position:50% 25%}
+}
