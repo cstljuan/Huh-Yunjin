@@ -51,7 +51,7 @@
       if (e.button !== 0 || e.target.closest('button,a,input,textarea,select')) return;
       const left = el.offsetLeft, top = el.offsetTop;
       drag = { id: e.pointerId, x: e.clientX, y: e.clientY, left, top, moved: false };
-      front(el); el.style.left = left + 'px'; el.style.top = top + 'px'; el.style.right = 'auto'; el.style.bottom = 'auto';
+      el.classList.remove('window-enter');front(el); el.style.left = left + 'px'; el.style.top = top + 'px'; el.style.right = 'auto'; el.style.bottom = 'auto';
       handle.setPointerCapture(e.pointerId); el.classList.add('dragging');
     });
     handle.addEventListener('pointermove', e => {
@@ -96,7 +96,7 @@
   function show(key) {
     const record = records.get(key); if (!record) return;
     const el = record.el; el.hidden = false; el.classList.remove('min','minimized','minimized-window');
-    front(el); el.classList.remove('window-enter'); void el.offsetWidth; el.classList.add('window-enter');
+    front(el); el.dataset.open='true';el.classList.remove('window-enter'); void el.offsetWidth; el.classList.add('window-enter');el.addEventListener('animationend',()=>el.classList.remove('window-enter'),{once:true});
     sound('open'); notifyWindows();
   }
   function windowBox(key, title, body, className = '') {
@@ -234,7 +234,7 @@
   let motionOn=false, neutral, tiltFrame=0,targetX=0,targetY=0,currentX=0,currentY=0;
   const motion=document.querySelector('[data-motion]');
   function parallax(x,y){root.querySelectorAll('[data-depth]').forEach(el=>{if(el.dataset.desktopDrag)return;const depth=Number(el.dataset.depth);el.style.translate=(-x*depth)+'px '+(-y*depth)+'px'})}
-  window.addEventListener('pointermove',e=>{if(e.pointerType==='touch'||motionOn||reduced.matches)return;parallax((e.clientX-innerWidth/2)*.35,(e.clientY-innerHeight/2)*.35)},{passive:true});
+  window.addEventListener('pointermove',e=>{if(e.pointerType==='touch'||motionOn||reduced.matches)return;parallax((e.clientX-innerWidth/2)*(config.theme==='market'?.75:.35),(e.clientY-innerHeight/2)*(config.theme==='market'?.75:.35))},{passive:true});
   function tick(){if(!motionOn||document.hidden){tiltFrame=0;return}currentX+=(targetX-currentX)*.12;currentY+=(targetY-currentY)*.12;parallax(currentX,currentY);tiltFrame=requestAnimationFrame(tick)}
   function tilt(e){if(!motionOn||!Number.isFinite(e.gamma)||!Number.isFinite(e.beta))return;if(!neutral)neutral={x:e.gamma,y:e.beta};targetX=Math.max(-20,Math.min(20,e.gamma-neutral.x))*15;targetY=Math.max(-20,Math.min(20,e.beta-neutral.y))*15;if(!tiltFrame)tiltFrame=requestAnimationFrame(tick)}
   motion?.addEventListener('click',async()=>{if(motionOn){motionOn=false;removeEventListener('deviceorientation',tilt);cancelAnimationFrame(tiltFrame);tiltFrame=0;parallax(0,0);motion.textContent='PHONE MOTION';motion.setAttribute('aria-pressed','false');return}if(!window.DeviceOrientationEvent){toast('Phone motion is unavailable here.');return}try{if(typeof DeviceOrientationEvent.requestPermission==='function'&&await DeviceOrientationEvent.requestPermission()!=='granted'){toast('Motion permission was not granted.');return}motionOn=true;neutral=null;motion.textContent='MOTION ON';motion.setAttribute('aria-pressed','true');addEventListener('deviceorientation',tilt,{passive:true})}catch{toast('Phone motion could not start.')}});
