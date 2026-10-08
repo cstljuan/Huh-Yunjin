@@ -98,8 +98,7 @@ body[data-theme="diary"] .photo-main{left:70%;top:12%;width:24vw}
  body[data-theme="diary"] .photo-main{left:62%;top:27%;width:34%}
 }
 
-@font-face{font-family:AlbumTitle;src:url('fonts/album-title-bookman.otf') format('opentype');font-style:italic;font-weight:700;font-display:swap}
-body[data-theme="diary"] .title>span{font-family:AlbumTitle,serif;font-style:italic;font-weight:700;font-size:clamp(58px,7.5vw,142px);letter-spacing:-.075em;line-height:1.03}
+body[data-theme="diary"] .title>span{font-family:Space,Arial,sans-serif;font-style:normal;font-weight:700;font-size:clamp(58px,7.5vw,142px);letter-spacing:-.08em;line-height:1.03}
 @media(max-width:760px){body[data-theme="diary"] .title>span{font-size:clamp(45px,12vw,72px)}}
 
 /* Full scene composite: transparent Day Trip foreground over a rooftop plate. */
