@@ -68,3 +68,32 @@ body.menu-hidden .action-dock,body.menu-hidden .taskbar{display:none!important}
  body[data-theme="field"] .subject{inset:-3%;width:106%;height:106%;object-position:48% center}
  body[data-theme="aura"] .subject,body[data-theme="aura"][data-portrait="electric"] .subject{width:100%;height:75%;right:-12%;bottom:-2%;object-position:50% 25%}
 }
+
+/* Diary: cream outline and a caption-free frame, clear of the title. */
+body[data-theme="diary"] .title{ -webkit-text-stroke:2px #fff9ed;paint-order:stroke fill;text-shadow:2px 3px #fff9ed}
+body[data-theme="diary"] .title small{-webkit-text-stroke:0;text-shadow:none}
+body[data-theme="diary"] .diary-main-polaroid{margin:0;left:46%;top:25%;width:48%;height:auto;padding:20px 20px 48px;background:#fff9ed;transform:rotate(4deg);pointer-events:auto;box-shadow:9px 12px #70432926;filter:none}
+body[data-theme="diary"] .diary-main-polaroid img{display:block;width:100%;aspect-ratio:1.45;object-fit:cover}
+/* Day Trip: sage sky, sand tones, and an intact portrait. */
+body[data-theme="field"]{--ui-blue:#435c48;--ui-paper:#f7f5e6;--ui-ink:#334633;--ui-accent:#a9bd96;--ui-soft:#dce3cd}
+body[data-theme="field"] .scene{background:linear-gradient(#c6ceb7,#a4ab8d 48%,#8b785b)}
+body[data-theme="field"] .background{display:block;filter:blur(32px) saturate(.65);opacity:.5;object-position:left center}
+body[data-theme="field"] .subject{inset:auto;left:auto;right:-2%;top:-2%;bottom:auto;width:59%;height:104%;object-fit:cover;object-position:50% 28%;mask-image:linear-gradient(to right,transparent,black 12%);-webkit-mask-image:linear-gradient(to right,transparent,black 12%);z-index:0}
+body[data-theme="field"] .mast h1{color:#fffbea;text-shadow:3px 4px #435c48,5px 6px #829675}
+body[data-theme="field"] .field-logo{margin:0;left:4%;top:5%;width:clamp(110px,11vw,180px);padding:10px 12px;background:#f7f5e6;border:1px solid #435c48;box-shadow:4px 5px #435c4844;transform:rotate(-4deg)}
+body[data-theme="field"] .field-logo img{width:100%;filter:brightness(0) saturate(100%) invert(30%) sepia(16%) saturate(689%) hue-rotate(82deg)}
+@media(max-width:760px){
+ body[data-theme="diary"] .title{-webkit-text-stroke:1.4px #fff9ed}
+ body[data-theme="diary"] .diary-main-polaroid{left:12%;top:36%;width:80%;height:auto;padding:12px 12px 32px}
+ body[data-theme="field"] .subject{inset:auto;right:-15%;top:0;width:115%;height:104%;object-position:53% center}
+ body[data-theme="field"] .field-logo{left:5%;top:3%;width:110px;padding:7px}
+}
+
+body[data-theme="field"] .field-logo{position:absolute;z-index:12}
+body[data-theme="field"] .subject{width:auto;height:104%;right:0;object-fit:contain;mask-image:none;-webkit-mask-image:none}
+body[data-theme="field"] .background{opacity:.22}
+body[data-theme="diary"] .photo-main{left:70%;top:12%;width:24vw}
+@media(max-width:760px){
+ body[data-theme="field"] .subject{width:115%;height:104%;right:-15%;object-fit:cover;object-position:53% center}
+ body[data-theme="diary"] .photo-main{left:62%;top:27%;width:34%}
+}
