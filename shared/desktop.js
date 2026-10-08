@@ -27,11 +27,24 @@
     menu.setAttribute('aria-keyshortcuts', 'H');
   });
   if (window.POSTER?.theme === 'aura') {
-    const portrait = (window.POSTER.portrait || new URLSearchParams(location.search).get('portrait')) === 'electric' ? 'electric' : 'afterimage';
-    document.body.dataset.portrait = portrait;
+    let portrait = (window.POSTER.portrait || new URLSearchParams(location.search).get('portrait')) === 'afterimage' ? 'afterimage' : 'electric';
     const hero = document.getElementById('hero');
-    hero.src = portrait === 'electric' ? 'assets/photo-02.webp' : 'assets/photo-05.webp';
-    hero.alt = `Yunjin in the ${portrait === 'electric' ? 'Electric' : 'Afterimage'} editorial portrait`;
+    const toggle = document.querySelector('[data-portrait-toggle]');
+    function applyPortrait() {
+      document.body.dataset.portrait = portrait;
+      hero.src = portrait === 'electric' ? 'assets/photo-02.webp' : 'assets/photo-05.webp';
+      hero.alt = `Yunjin in the ${portrait === 'electric' ? 'Electric' : 'Afterimage'} editorial portrait`;
+      if (toggle) {
+        toggle.textContent = portrait === 'electric' ? 'PORTRAIT: ELECTRIC' : 'PORTRAIT: AFTERIMAGE';
+        toggle.setAttribute('aria-pressed', String(portrait === 'electric'));
+        toggle.title = portrait === 'electric' ? 'Switch to Afterimage' : 'Switch to Electric cyan glow';
+      }
+    }
+    applyPortrait();
+    toggle?.addEventListener('click', () => {
+      portrait = portrait === 'electric' ? 'afterimage' : 'electric';
+      applyPortrait();
+    });
   }
 
   function sound(kind = 'click') {
