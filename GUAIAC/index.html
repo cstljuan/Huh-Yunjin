@@ -1,11 +1,12 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#d5dfcb">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<meta content="#d5dfcb" name="theme-color"/>
 <title>GUAIAC — Yunjin field guide</title>
-<meta name="description" content="Explore GUAIAC, an interactive Huh Yunjin birthday poster with draggable details and a photo collection. Part of YUNJIN.EXE, celebrating Jennifer at 25."><link rel="icon" href="../COMPACT-BITES/assets/lesserafim-icon.svg" type="image/svg+xml">
+<meta content="GUAIAC — an interactive Yunjin world with photographs, music, movable Polaroids and personal notes." name="description"/><link href="../COMPACT-BITES/assets/lesserafim-icon.svg" rel="icon" type="image/svg+xml"/>
 <style>
 @font-face{font-family:Space;src:url('../COMPACT-BITES/assets/fonts/space-grotesk-bold.ttf');font-display:swap}
 @font-face{font-family:Plex;src:url('../COMPACT-BITES/assets/fonts/ibm-plex-mono-regular.ttf');font-display:swap}
@@ -49,66 +50,35 @@ button{touch-action:manipulation}.xp[hidden]{display:none!important}
 @media(prefers-reduced-motion:reduce){.layer,[data-depth],.floating{transition:none!important;animation:none!important}}
 
 </style>
-</head>
+<link href="../shared/poster.css" rel="stylesheet"/></head>
 <body>
-<main class="scene" id="scene" aria-label="Interactive GUAIAC Yunjin poster">
-  <img class="layer background" data-depth=".012" src="assets/bg.jpg" alt="">
-  <img class="layer subject" data-depth=".035" id="hero" src="assets/subject.png" alt="Yunjin in a sunlit GUAIAC editorial portrait">
-  <img class="layer midground" data-depth=".058" src="assets/midground.png" alt="Three Yunjin field guide photo cards">
-  <div class="grain" aria-hidden="true"></div><div class="border" aria-hidden="true"></div>
+<main aria-label="Interactive GUAIAC Yunjin poster" class="scene" id="scene">
+<img alt="" class="layer background" data-depth=".012" src="assets/bg.jpg"/>
+<img alt="Yunjin in a sunlit GUAIAC editorial portrait" class="layer subject" data-depth=".035" id="hero" src="assets/subject-refined.png"/>
 
-  <nav class="topline" aria-label="Poster navigation">
-    <a class="navback" href="../" aria-label="Back to main menu">&larr; MAIN MENU</a><span class="tiny">FIELD GUIDE // 04</span>
-    <button class="control-chip" id="motion" aria-pressed="false"> PHONE MOTION OFF</button>
-  </nav>
-  <header class="mast" data-drag tabindex="0">
-    <div class="eyebrow">LE SSERAFIM / YUNJIN / 04—05</div>
-    <h1>GUA<br>IAC</h1>
-    <p>A LITTLE FIELD GUIDE FOR THE WILD AT HEART.<span class="hangul" lang="ko">윤진의 작은 야생</span></p>
-  </header>
+<div aria-hidden="true" class="grain"></div><div aria-hidden="true" class="border"></div>
 
-  <img class="sticker one" data-drag draggable="false" src="assets/graffiti-1.png" alt="100 percent Yunjin energy sticker">
-  <img class="sticker two" data-drag draggable="false" src="assets/graffiti-2.png" alt="Yunjin field notes in Korean">
-  <div class="edition" data-drag tabindex="0">VOL. 04 / GUAIAC </div>
+<header class="mast" data-drag="" tabindex="0">
+<div class="eyebrow">LE SSERAFIM / YUNJIN / 04—05</div>
+<h1>GUAIAC</h1>
+<p><span class="hangul" lang="ko">윤진의 작은 야생</span></p>
+</header>
 
-  <section class="xp notes" id="notes" data-window aria-label="Field notes window">
-    <header class="titlebar"><span class="appicon"></span><strong>FIELD-NOTES.txt</strong><div class="winbuttons"><button class="min" aria-label="Minimize field notes">_</button><button class="close" aria-label="Close field notes">×</button></div></header>
-    <div class="xp-menu">File&nbsp;&nbsp; Edit&nbsp;&nbsp; View&nbsp;&nbsp; Help</div>
-    <div class="body"><h2 class="note-title">Today's forecast: Yunjin.</h2><p>Clouds, camera flash, and a tiny scoop of something sweet. Keep wandering until the good light finds you.</p><div class="data-row"><span id="noteStatus">FIELD LOG / SAVED</span><button class="action" id="log">SAVE NOTE </button></div></div>
-  </section>
 
-  <section class="xp archive" id="archive" data-window aria-label="Photo archive window">
-    <header class="titlebar"><span class="appicon">XP</span><strong>MY PICTURES / GUAIAC</strong><div class="winbuttons"><button class="min" aria-label="Minimize photo archive">_</button><button class="close" aria-label="Close photo archive">×</button></div></header>
-    <div class="xp-menu">File&nbsp;&nbsp; Edit&nbsp;&nbsp; Print&nbsp;&nbsp; Help</div>
-    <div class="body"><p class="archive-copy">Pick a frame to open it. Drag a thumbnail into the desktop, too.</p><div class="photos" id="photos"></div></div>
-  </section>
+<div class="edition" data-drag="" tabindex="0">VOL. 04 / GUAIAC </div>
+<section aria-label="Field notes window" class="xp notes" data-window="" hidden="" id="notes">
+<header class="titlebar"><span class="appicon"></span><strong>FIELD-NOTES.txt</strong><div class="winbuttons"><button aria-label="Minimize field notes" class="min">_</button><button aria-label="Close field notes" class="close">×</button></div></header>
+<div class="xp-menu">File   Edit   View   Help</div>
+<div class="body"><h2 class="note-title">Today's forecast: Yunjin.</h2><p>Clouds, camera flash, and a tiny scoop of something sweet. Keep wandering until the good light finds you.</p><div class="data-row"><span id="noteStatus">FIELD LOG / SAVED</span><button class="action" id="log">SAVE NOTE </button></div></div>
+</section>
+<section aria-label="Photo archive window" class="xp archive" data-window="" id="archive">
+<header class="titlebar"><span class="appicon">XP</span><strong>MY PICTURES / GUAIAC</strong><div class="winbuttons"><button aria-label="Minimize photo archive" class="min">_</button><button aria-label="Close photo archive" class="close">×</button></div></header>
+<div class="xp-menu">File   Edit   Print   Help</div>
+<div class="body"><p class="archive-copy">Pick a frame to open it. Drag a thumbnail into the desktop, too.</p><div class="photos" id="photos"></div></div>
+</section>
 
-  <div class="dock" aria-label="Window controls"><span class="mini-app"><img src="assets/ui-window.svg" alt=""> DESKTOP</span><button data-restore="notes">FIELD NOTES</button><button data-restore="archive">PHOTOS</button><button class="sound" id="sound" aria-pressed="false">SOUND OFF</button></div>
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
-</main>
-<script>
-/* GUAIAC poster controls: photos, sound, phone tilt and movable XP windows. */
-const scene=document.querySelector('#scene'),photos=document.querySelector('#photos'),toast=document.querySelector('#toast');
-const shots=['LOOKOUT','SOFT STATIC','DAY TRIP','SWEET LIGHT'];
-let z=30,activeDrag=null,soundOn=false,audio=null,motionOn=false,neutral=null,tilt={x:0,y:0},current={x:0,y:0},motionFrame=0,mouseFrame=0;
-function beep(freq=660){if(!soundOn)return;audio||=new(window.AudioContext||window.webkitAudioContext)();if(audio.state==='suspended')audio.resume();const o=audio.createOscillator(),g=audio.createGain();o.type='triangle';o.frequency.value=freq;g.gain.setValueAtTime(.022,audio.currentTime);g.gain.exponentialRampToValueAtTime(.001,audio.currentTime+.13);o.connect(g).connect(audio.destination);o.start();o.stop(audio.currentTime+.13)}
-function ping(message){toast.textContent=message;toast.classList.add('show');window.clearTimeout(ping.timer);ping.timer=window.setTimeout(()=>toast.classList.remove('show'),1750)}
-function front(el){el.style.zIndex=++z}
-function makeMovable(el,handle=el){if(el.dataset.movable)return;el.dataset.movable='1';handle.addEventListener('pointerdown',e=>{if(e.button!==undefined&&e.button!==0||e.target.closest('button,a,.photo'))return;front(el);activeDrag={el,id:e.pointerId,x:e.clientX,y:e.clientY,l:el.offsetLeft,t:el.offsetTop};el.style.left=activeDrag.l+'px';el.style.top=activeDrag.t+'px';el.style.right='auto';el.style.bottom='auto';handle.setPointerCapture(e.pointerId);el.classList.add('dragging')});handle.addEventListener('pointermove',e=>{if(!activeDrag||activeDrag.el!==el||activeDrag.id!==e.pointerId)return;el.style.left=Math.max(0,Math.min(innerWidth-el.offsetWidth,activeDrag.l+e.clientX-activeDrag.x))+'px';el.style.top=Math.max(0,Math.min(innerHeight-el.offsetHeight,activeDrag.t+e.clientY-activeDrag.y))+'px'});const end=e=>{if(!activeDrag||activeDrag.el!==el||activeDrag.id!==e.pointerId)return;activeDrag=null;el.classList.remove('dragging');if(handle.hasPointerCapture(e.pointerId))handle.releasePointerCapture(e.pointerId)};handle.addEventListener('pointerup',end);handle.addEventListener('pointercancel',end);el.addEventListener('keydown',e=>{if(e.target!==el)return;const d={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,-1],ArrowDown:[0,1]}[e.key];if(!d)return;e.preventDefault();el.style.right='auto';el.style.bottom='auto';el.style.left=el.offsetLeft+d[0]*10+'px';el.style.top=el.offsetTop+d[1]*10+'px';front(el)})}
-document.querySelectorAll('[data-drag]').forEach(el=>makeMovable(el));
-function restoreWindow(name){const el=document.querySelector('#'+name);el.hidden=false;el.classList.remove('minimized');front(el);beep(820)}
-document.querySelectorAll('[data-window]').forEach(win=>{const bar=win.querySelector('.titlebar');makeMovable(win,bar);win.querySelector('.min').onclick=()=>{win.classList.add('minimized');beep(520)};win.querySelector('.close').onclick=()=>{win.hidden=true;beep(420)}});
-document.querySelectorAll('[data-restore]').forEach(b=>b.onclick=()=>restoreWindow(b.dataset.restore));
-document.querySelector('#log').onclick=()=>{document.querySelector('#noteStatus').textContent='FIELD LOG / SAVED ';ping('Field note saved!');beep(900)};
-function openPhoto(i,x=innerWidth*.48,y=innerHeight*.35){const n=String(i+1).padStart(2,'0'),w=document.createElement('section');w.className='xp window-photo';w.dataset.window='';w.tabIndex=0;w.innerHTML='<header class="titlebar"><span class="appicon">XP</span><strong>GUAIAC_'+n+'.jpg / '+shots[i]+'</strong><div class="winbuttons"><button class="min" aria-label="Minimize photo">_</button><button class="close" aria-label="Close photo">×</button></div></header><div class="xp-menu">File&nbsp;&nbsp; Edit&nbsp;&nbsp; View</div><div class="body"><img src="assets/photo-'+n+'.webp" alt="Yunjin — '+shots[i]+'"><div class="photo-label"><span>'+shots[i]+' / BIRTHDAY ARCHIVE</span><button class="action"> OK</button></div></div>';w.style.left=Math.max(8,Math.min(innerWidth-210,x))+'px';w.style.top=Math.max(45,Math.min(innerHeight-210,y))+'px';scene.append(w);w.style.left=Math.max(12,Math.min(innerWidth-w.offsetWidth-12,parseFloat(w.style.left)))+'px';w.style.top=Math.max(60,Math.min(innerHeight-w.offsetHeight-85,parseFloat(w.style.top)))+'px';makeMovable(w,w.querySelector('.titlebar'));w.querySelector('.min').onclick=()=>w.classList.toggle('minimized');w.querySelector('.close').onclick=()=>{w.remove();beep(430)};w.querySelector('.photo-label button').onclick=()=>{w.classList.add('minimized');beep(790)};front(w);photos.querySelectorAll('.photo').forEach((b,j)=>b.setAttribute('aria-pressed',String(j===i)));beep(880)}
-shots.forEach((name,i)=>{const n=String(i+1).padStart(2,'0'),b=document.createElement('button');b.type='button';b.className='photo';b.draggable=true;b.setAttribute('aria-pressed','false');b.setAttribute('aria-label','Open '+name+' photo');b.innerHTML='<img src="assets/photo-'+n+'.webp" alt="" draggable="false"><span>'+n+' / '+name+'</span>';b.onclick=()=>openPhoto(i,innerWidth*(.37+(i%2)*.12),innerHeight*(.28+(i%3)*.1));b.ondragstart=e=>{e.dataTransfer.effectAllowed='copy';e.dataTransfer.setData('text/plain',String(i))};photos.append(b)});
-scene.addEventListener('dragover',e=>{if(e.dataTransfer.types.includes('text/plain'))e.preventDefault()});scene.addEventListener('drop',e=>{const n=e.dataTransfer.getData('text/plain');if(!/^\d$/.test(n)||!shots[Number(n)])return;e.preventDefault();openPhoto(Number(n),e.clientX-110,e.clientY-25)});
-document.querySelector('#sound').onclick=e=>{soundOn=!soundOn;e.currentTarget.textContent=soundOn?'SOUND ON':'SOUND OFF';e.currentTarget.setAttribute('aria-pressed',String(soundOn));beep(920)};
-function paint(x,y){scene.querySelectorAll('[data-depth]').forEach(el=>{const d=Number(el.dataset.depth);el.style.setProperty('--px',(-x*d)+'px');el.style.setProperty('--py',(-y*d)+'px')})}
-window.addEventListener('mousemove',e=>{if(motionOn||matchMedia('(prefers-reduced-motion:reduce)').matches)return;const x=e.clientX-innerWidth/2,y=e.clientY-innerHeight/2;if(mouseFrame)return;mouseFrame=requestAnimationFrame(()=>{paint(x,y);mouseFrame=0})},{passive:true});
-function animateTilt(){if(!motionOn){motionFrame=0;return}current.x+=(tilt.x-current.x)*.13;current.y+=(tilt.y-current.y)*.13;paint(current.x,current.y);motionFrame=requestAnimationFrame(animateTilt)}
-function onTilt(e){if(!motionOn||!Number.isFinite(e.gamma)||!Number.isFinite(e.beta))return;const a=screen.orientation?.angle??window.orientation??0,x=a===90?e.beta:(a===270||a===-90)?-e.beta:e.gamma,y=a===90?-e.gamma:(a===270||a===-90)?e.gamma:e.beta;if(!neutral)neutral={x,y};tilt.x=Math.max(-25,Math.min(25,x-neutral.x))*34;tilt.y=Math.max(-25,Math.min(25,y-neutral.y))*34;if(!motionFrame)motionFrame=requestAnimationFrame(animateTilt)}
-const motionButton=document.querySelector('#motion');motionButton.onclick=async()=>{if(motionOn){motionOn=false;window.removeEventListener('deviceorientation',onTilt);cancelAnimationFrame(motionFrame);motionFrame=0;current={x:0,y:0};tilt={x:0,y:0};paint(0,0);motionButton.textContent=' PHONE MOTION OFF';motionButton.setAttribute('aria-pressed','false');return}if(!window.DeviceOrientationEvent){ping('Phone motion is unavailable in this browser.');return}try{if(typeof DeviceOrientationEvent.requestPermission==='function'&&await DeviceOrientationEvent.requestPermission()!=='granted'){ping('Allow motion access in browser settings.');return}motionOn=true;neutral=null;motionButton.textContent=' PHONE MOTION ON';motionButton.setAttribute('aria-pressed','true');window.addEventListener('deviceorientation',onTilt,{passive:true})}catch{ping('Allow motion access in browser settings.')}};
-</script>
-</body>
+
+<nav aria-label="Desktop actions" class="action-dock"><a class="dock-home" href="../">← MAIN MENU</a><button data-restore="archive">PHOTOS</button><button data-restore="music">♫ MUSIC</button><button data-restore="notes">NOTES</button><button data-contact-sheet="">ALL FRAMES</button><button data-keepsake="">KEEPSAKE</button><button aria-pressed="true" data-sound="">SOUND ON</button><button aria-pressed="false" data-motion="">PHONE MOTION</button></nav></main>
+
+<script>window.POSTER={"theme": "field", "song": {"name": "I ≠ DOLL", "artist": "HUH YUNJIN", "src": "../shared/audio/i-not-doll.mp3"}, "musicLeft": "77%", "musicTop": "10%", "polaroids": [{"index": 1, "left": 66, "top": 59, "rotation": 3}, {"index": 2, "left": 77, "top": 60, "rotation": -3}, {"index": 3, "left": 86, "top": 59, "rotation": 4}], "photos": [{"id": "01", "label": "LOOKOUT", "src": "assets/photo-01.webp"}, {"id": "02", "label": "SOFT STATIC", "src": "assets/photo-02.webp"}, {"id": "03", "label": "DAY TRIP", "src": "assets/photo-03.webp"}, {"id": "04", "label": "SWEET LIGHT", "src": "assets/photo-04.webp"}, {"id": "still", "label": "PICNIC BREAK", "src": "assets/mood-photo.png", "alt": "PICNIC BREAK — an illustrated photographic still life"}]};</script><script src="../shared/desktop.js"></script></body>
 </html>
